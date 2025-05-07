@@ -1,6 +1,11 @@
 ### Question
 *Design an online judge to provide problem submission and leaderboard functions of competetion*
 
+
+### High level solution
+- The worker runs the container as a child process of the worker program using something like:
+- Your worker thread/process blocks and waits for docker container to execute and then gets its status code along with output
+
 ### Dive deep
 - How would you pick among server execution, docker container execution vs VM execution?
 - How would you ensure protection against malicious code execution?
@@ -13,11 +18,16 @@
   - How will you share the output back to submission worker?
 
 - How would you build protection for system resources CPU, Memory, FileSystem, Network etc?
-    - fork bomb
-    - time limit
-    - vCPU assignment
+    - fork bomb- user AppArmor security profile and PID limit 
+    - time limit - `timeout` option in container
+    - vCPU assignment - fixed vCPU assignemnt
     - seccomp, app armour
     - network: none
+    - disk space
+        - Mount a directory specific to the container so that container is not able to access other directories of the host
+        - If required make some as read-only-mounts to prevent abusing (e.g. if problems are being read from a mount, you dont want any container to corrupt the folder)
+        - Mount only what is needed `docker run -v /tmp/sub_123:/app` {sourcepath:container_path}
+        - `tmpfs-size=100m` not allowed to have more than 100MBs per container
 - How would you ensure fast UI rendering?
 - How would you rate limit your system to protect it from DDoS?
   - At the frontend server which takes in submission, we check for user's submission history and throttle if more than threshold number in last 1 minute.
