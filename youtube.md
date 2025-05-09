@@ -3,7 +3,7 @@
 
 ### Dive deep areas
 1. CDNs.
-2. Chukning, encoding.
+2. Chunking, encoding.
 3. Edge caching and cache control headers.
 4. AdaptiveBitRate
 5. Upload-To-Stream-Pipeline

@@ -6,7 +6,4 @@
 - Surge pricing
 - Matching heuristic, algorithms
 - Handling ghost drivers or location spoofing
-- ETA calcuation: historical data + realtime traffic
-
-
-
+- ETA calculation: historical data + realtime traffic

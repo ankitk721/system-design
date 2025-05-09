@@ -71,3 +71,8 @@ docker run --rm -m 256m --cpus=0.5 openjdk:17 sh -c "javac Solution.java && java
 - runs a new container
 - `rm` => delete container after it exits
 - `sh -c` => run a shell command inside container 
+
+#### FAQ
+- why is first image pull slowers?
+  - docker needs to download multi 100 MB image from DockerHub and store it in FileSystem. For later execution the image is already in disk and can be quickly used in container. 
+  - container only does a readonly mount of the image.
