@@ -3,7 +3,9 @@
 
 ### Dive deep areas
 - Token bucket vs leaky bucket
-    - Token bucket fills up tokens in a bucket at a rate and allows request while there is still some tokens left. Leaky bucket withdraws at a fixed rate and if bucket capacity is reached, spill over/throttle/429 happens. Hence it makes more sense for us to go with TokenBucket to allow for bursty loads.
+    - Token bucket fills up tokens in a bucket at a rate and allows request while there is still some tokens left. Leaky bucket withdraws 
+    at a fixed rate and if bucket capacity is reached, spill over/throttle/429 happens. Hence it makes more sense for us to go with
+     TokenBucket to allow for bursty loads.
 - Redis based counters
     - Use redis tokenBucket counter perKey `userId: {tokensRemaining: <>, lastInvocation:<>}`. 
     - Use Lua script to atomically
